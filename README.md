@@ -1,5 +1,5 @@
 # XVision
-XVision is a PoC of microservice dependency visualisation with D3.js.
+XVision is a microservice dependency visualisation js library. It is built with D3.js and webpack. Please refer to index.html for API invokation examples.
 
 ![](XVisionDemo.gif)
 
