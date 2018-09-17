@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> XVision Demo </title>
+
+    <!--FIXME webpack .css -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="build/xvision.js"></script>
+</head>
+
+<body>
+
+    <h1> XVision Demo </h1>
+    <div>
+        <button onclick="graph.putFocusNodes(['Ryan', 'Michael', 'Nicholas', 'kyle'])">Focus</button>
+        <button onclick="graph.disablePacket()">Disable Packet</button>
+        <button onclick="graph.enablePacket()">Enable Packet</button>
+        <button onclick="graph.flareNodes(['Joseph', 'Chas'])">Flare</button>
+        <button onclick="graph.layoutList[1].apply()">Layout Width First</button>
+        <button onclick="graph.layoutList[2].apply()">Layout Depth First</button>
+        <button onclick="graph.layoutList[0].apply()">Layout Electron</button>
+        <button onclick="graph.inplaceUpdate(graphRespMichael)">Update Data</button>
+        <button onclick='graph.draw(graphRespPlenty)'>Reset</button>
+    </div>
+    <svg id="api_dependency_graph" width="1200" height="600" />
+
+    <script src="sample_data.js"></script>
+    <script>
+        var graph = new xvision.XVision("api_dependency_graph", {
+            F_IS_NODE_WARNING: function (node) {
+                //TODO should use machine learning to spot anomaly dynamically
+                return node.failRate >= 0.005 && node.failRate < 0.01;
+            },
+            F_IS_NODE_ERROR: function (node) {
+                //TODO should use machine learning to spot anomaly dynamically
+                return node.failRate >= 0.01;
+            },
+            F_IS_EDGE_WARNING: function (edge) {
+                if (edge.totalReqCount === 0) {
+                    return false;
+                }
+                let failRate = edge.failedReqCount / edge.totalReqCount;
+                return failRate >= 0.005 && failRate < 0.01;
+            },
+
+            F_IS_EDGE_ERROR: function (edge) {
+                if (edge.totalReqCount === 0) {
+                    return false;
+                }
+                let failRate = edge.failedReqCount / edge.totalReqCount;
+                return failRate >= 0.01;
+            },
+        });
+
+        graph.on('select-node', function (node, pos) {
+            console.log(`select-node: ${node.name}, coordinate: [${pos[0]},${pos[1]}]`);
+        });
+        graph.on('deselect-node', function (node) {
+            console.log(`deselect-node: ${node.name}`);
+        });
+        graph.on('select-edge', function (edge) {
+            console.log(`select-edge: ${edge.source.name} => ${edge.target.name}`);
+        });
+        graph.on('deselect-edge', function (edge) {
+            console.log(`deselect-edge: ${edge.source.name} => ${edge.target.name}`);
+        });
+        graph.on('click-blank', function (pos) {
+            //'click-blank' will clear all the 'selected' status of all nodes
+            // note: NOT firing 'deselect-node' event for any selected node
+            console.log(`click-blank, coordinate: [${pos[0]},${pos[1]}]`);
+        });
+
+        graph.draw(graphRespPlenty);
+    </script>
+
+</body>
+
+</html>

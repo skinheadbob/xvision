@@ -1,0 +1,40 @@
+:root {
+    --color-theme: rgb(186, 213, 237);
+
+    --color-unknown: rgb(128, 128, 128);
+    --color-warning: rgb(268, 185, 73);
+    --color-error: rgb(184, 36, 36);
+
+    --color-background: rgb(35, 35, 35);
+}
+
+.xvision-svg {
+    background-color: var(--color-background);
+}
+
+.xvision .theme-label-filter-flood {
+    flood-color: var(--color-theme);
+    flood-opacity: 0.85;
+    result: flood;
+}
+
+.xvision .edge-marker {
+    opacity: 0.85;
+    fill: var(--color-theme);
+}
+
+.xvision .dim {
+    opacity: 0.1;
+    transition: opacity 0.3s linear;
+}
+
+.xvision .hidden {
+    visibility: hidden;
+}
+
+.xvision .ephemeral-group .node-flare {
+    stroke: var(--color-theme);
+    stroke-width: 0.1em;
+    fill-opacity: 0;
+    pointer-events: none;
+}

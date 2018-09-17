@@ -1,0 +1,84 @@
+.xvision .node-group .node {
+    cursor: pointer;
+    fill-opacity: 0.4;
+}
+
+.xvision .node-group .node .node-body {
+    stroke: var(--color-theme);
+    stroke-width: 0.1em;
+}
+
+.xvision .node-group .node .node-name {
+    font: 1em sans-serif;
+    fill-opacity: 1;
+    pointer-events: none;
+}
+
+.xvision .node-group .node .node-detail {
+    font: 6px sans-serif;
+    pointer-events: none;
+    fill-opacity: 1;
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+.xvision .node-group .node.unknown .node-body {
+    stroke: var(--color-unknown);
+    stroke-width: 0.15em;
+}
+
+.xvision .node-group .node.warning .node-body {
+    stroke: var(--color-warning);
+    stroke-width: 0.15em;
+}
+
+.xvision .node-group .node.error .node-body {
+    stroke: var(--color-error);
+    stroke-width: 0.15em;
+}
+
+/************************************* highlight *************************************/
+.xvision .node-group .node.highlight {
+    fill-opacity: 0.7;
+}
+
+/************************************* focus *************************************/
+.xvision .node-group .node.focus .node-body {
+    animation: breathing 0.7s ease-out infinite alternate;
+}
+
+.xvision .node-group .node.focus .node-icon {
+    visibility: hidden;
+}
+
+.xvision .node-group .node.focus .node-body {
+    fill: var(--color-theme);
+}
+
+.xvision .node-group .node.focus.unknown .node-body {
+    fill: var(--color-unknown);
+    stroke: var(--color-unknown);
+}
+
+.xvision .node-group .node.focus.warning .node-body {
+    fill: var(--color-warning);
+    stroke: var(--color-warning);
+}
+
+.xvision .node-group .node.focus.error .node-body {
+    fill: var(--color-error);
+    stroke: var(--color-error);
+}
+
+@keyframes breathing {
+    0% {
+        stroke-width: 0.05em;
+        stroke-opacity: 0.25;
+        transform: scale(0.95);
+    }
+
+    100% {
+        stroke-width: 0.17em;
+        stroke-opacity: 1;
+        transform: scale(1);
+    }
+}

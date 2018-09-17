@@ -1,0 +1,86 @@
+.xvision .edge-group .edge {
+    fill: none;
+    stroke: var(--color-theme);
+    stroke-width: 0.045em;
+    stroke-opacity: 0.4;
+    fill-opacity: 0.4;
+    cursor: pointer;
+}
+
+.xvision .edge-group .edge:hover {
+    stroke-width: 0.27em;
+}
+
+.xvision .edge-group .edge.warning {
+    stroke-opacity: 0.8;
+    stroke: var(--color-warning);
+}
+
+.xvision .edge-group .edge.error {
+    stroke-opacity: 1;
+    stroke: var(--color-error);
+}
+
+.xvision .edge-group .edge .edge-packet {
+    r: 0.1em;
+    stroke-width: 0;
+}
+
+.xvision .edge-group .edge .edge-packet.edge-packet-normal {
+    fill: var(--color-theme);
+}
+
+.xvision .edge-group .edge .edge-packet.edge-packet-slow {
+    fill: var(--color-warning);
+    fill-opacity: 0.8;
+}
+
+.xvision .edge-group .edge .edge-packet.edge-packet-error {
+    fill: var(--color-error);
+    fill-opacity: 0.8;
+}
+
+/************************************* highlight *************************************/
+.xvision .edge-group .edge.highlight {
+    stroke-opacity: 0.4;
+}
+
+.xvision .edge-group .edge.highlight.warning {
+    stroke-opacity: 0.8;
+}
+
+.xvision .edge-group .edge.highlight.error {
+    stroke-opacity: 1;
+}
+
+.xvision .edge-group .edge.highlight.dualstream {
+    stroke-width: 0.125em;
+}
+
+/************************************* focus *************************************/
+.xvision .edge-group .edge.focus {
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    stroke-width: 0.15em;
+}
+
+.xvision .edge-group .edge.focus .edge-packet {
+    r: 0.15em;
+}
+
+/************************************* selected *************************************/
+.xvision .edge-group .edge.selected {
+    animation: breathing 0.7s ease-out infinite alternate;
+}
+
+@keyframes breathing {
+    0% {
+        stroke-width: 0.05em;
+        stroke-opacity: 0.25;
+    }
+
+    100% {
+        stroke-width: 0.17em;
+        stroke-opacity: 1;
+    }
+}
