@@ -1,6 +1,8 @@
 # XVision
 XVision is a PoC of microservice dependency visualisation with D3.js.
 
+![](XVisionDemo.gif)
+
 ## Run locally
 1. npm install
 2. npm run build
